@@ -1,0 +1,46 @@
+#
+# Copyright (C) 2025 OpenWrt.org
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+#
+
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=asterisk-sounds-digium
+PKG_VERSION:=@VERSION@
+PKG_RELEASE:=1
+PKG_BUILD_PARALLEL:=0
+
+PKG_BUILD_DIR:=$(BUILD_DIR)/asterisk-sounds-digium-$(PKG_VERSION)
+
+PKG_LICENSE:=GPL-3.0
+PKG_LICENSE_FILES:=COPYING LICENSE
+PKG_MAINTAINER:=Michael Gruz <michael.gruz@gmail.com>
+
+include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/download.mk
+
+define Package/asterisk-sounds-digium/Default
+  SUBMENU:=Telephony
+  SECTION:=net
+  CATEGORY:=Network
+  Conflicts:=asterisk-sound
+endef
+
+define Download/asterisk-sound
+  URL:=https://downloads.asterisk.org/pub/telephony/sounds
+  FILE:=asterisk-$(2)sounds-$(3)-current.tar.gz
+  URL_FILE:=asterisk-$(2)sounds-$(3)-current.tar.gz
+  HASH:=$(4)
+  SUBDIR:=$(PKG_SOURCE_SUBDIR)
+endef
+
+define Download/asterisk-moh
+  URL:=https://downloads.asterisk.org/pub/telephony/sounds
+  FILE:=asterisk-moh-opsound-$(2)-current.tar.gz
+  URL_FILE:=asterisk-moh-opsounds-$(2)-current.tar.gz
+  HASH:=$(3)
+  SUBDIR:=$(PKG_SOURCE_SUBDIR)
+endef
+
