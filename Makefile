@@ -1016,7 +1016,7 @@ $(call Package/asterisk/install/voicemail,$$(1),$(3),$(4))
 endef
 
 define BuildasteriskExtraSound
-  define Package/asterisk-extra-sound-$(1)-digium
+  define Package/asterisk-extra-sounds-$(1)-digium
   $$(call Package/asterisk-sounds-digium/Default)
     TITLE:=Sound support
     DEPENDS:=asterisk
@@ -1026,29 +1026,29 @@ define BuildasteriskExtraSound
 $(2)
   endef
 
-  define Package/asterisk-extra-sound-$(1)-digium/install
+  define Package/asterisk-extra-sounds-$(1)-digium/install
 $(call Package/asterisk/install/extra,$$(1),$(3),$(4))
   endef
 
-  $$(eval $$(call BuildPackage,asterisk-extra-sound-$(1)-digium))
+  $$(eval $$(call BuildPackage,asterisk-extra-sounds-$(1)-digium))
 endef
 
 define BuildasteriskExtraLiteSound
-  define Package/asterisk-extra-sound-$(1)-digium
+  define Package/asterisk-extra-sounds-$(1)-digium
   $$(call Package/asterisk-sounds-digium/Default)
     TITLE:=Sound support
     DEPENDS:=asterisk
   endef
 
-  define Package/asterisk-extra-sound-$(1)-digium/description
+  define Package/asterisk-extra-sounds-$(1)-digium/description
 $(2)
   endef
 
-  define Package/asterisk-extra-sound-$(1)-digium/install
+  define Package/asterisk-extra-sounds-$(1)-digium/install
 $(call Package/asterisk/install/extralite,$$(1),$(3),$(4))
   endef
 
-  $$(eval $$(call BuildPackage,asterisk-extra-sound-$(1)-digium))
+  $$(eval $$(call BuildPackage,asterisk-extra-sounds-$(1)-digium))
 endef
 
 define BuildasteriskMohSound
