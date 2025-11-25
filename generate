@@ -10,7 +10,7 @@ echo "${lang} ${fmt}"
 if [ ! -f tmp/asterisk-core-sounds-${lang}-${fmt}-current.tar.gz ];then wget -P tmp https://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-${lang}-${fmt}-current.tar.gz;fi
 suma=$(sha256sum tmp/asterisk-core-sounds-${lang}-${fmt}-current.tar.gz | cut -d" " -f1)
 cat <<EOF >>  make_download
-ifneq (\$(CONFIG_PACKAGE_asterisk-core-sound-${lang}-${fmt}-digium)\$(CONFIG_PACKAGE_asterisk-core-sound-voicemail-${lang}-${fmt}-digium),)
+ifneq (\$(CONFIG_PACKAGE_asterisk-core-sounds-${lang}-${fmt}-digium)\$(CONFIG_PACKAGE_asterisk-core-sounds-voicemail-${lang}-${fmt}-digium),)
 \$(eval \$(call Download,asterisk-sound,core-,${lang}-${fmt},${suma}))
 endif
 EOF
@@ -19,7 +19,7 @@ cat <<EOF >> make_build
 \$(eval \$(call BuildasteriskVoicemail,voicemail-${lang}-${fmt},${lang} core voice mail Files. ${fmt} format,${fmt},core-${lang}))
 EOF
 cat <<EOF >> make_prepare
-ifneq (\$(CONFIG_PACKAGE_asterisk-core-sound-${lang}-${fmt}-digium)\$(CONFIG_PACKAGE_asterisk-core-sound-voicemail-${lang}-${fmt}-digium),)
+ifneq (\$(CONFIG_PACKAGE_asterisk-core-sounds-${lang}-${fmt}-digium)\$(CONFIG_PACKAGE_asterisk-core-sounds-voicemail-${lang}-${fmt}-digium),)
 	\$(INSTALL_DIR) \$(PKG_BUILD_DIR)/core-${lang}
 	\$(HOST_TAR) -C \$(PKG_BUILD_DIR)/core-${lang} -xzf \$(DL_DIR)/asterisk-core-sounds-${lang}-${fmt}-current.tar.gz
 endif
@@ -33,7 +33,7 @@ echo "${lang} ${fmt}"
 if [ ! -f tmp/asterisk-extra-sounds-${lang}-${fmt}-current.tar.gz ];then wget -P tmp https://downloads.asterisk.org/pub/telephony/sounds/asterisk-extra-sounds-${lang}-${fmt}-current.tar.gz;fi
 suma=$(sha256sum tmp/asterisk-extra-sounds-${lang}-${fmt}-current.tar.gz | cut -d" " -f1)
 cat <<EOF >> make_download
-ifneq (\$(CONFIG_PACKAGE_asterisk-extra-sound-${lang}-${fmt}-digium),)
+ifneq (\$(CONFIG_PACKAGE_asterisk-extra-sounds-${lang}-${fmt}-digium),)
 \$(eval \$(call Download,asterisk-sound,extra-,${lang}-${fmt},${suma}))
 endif
 EOF
@@ -47,7 +47,7 @@ cat <<EOF >> make_build
 EOF
 fi
 cat <<EOF >> make_prepare
-ifneq (\$(CONFIG_PACKAGE_asterisk-extra-sound-${lang}-${fmt}-digium),)
+ifneq (\$(CONFIG_PACKAGE_asterisk-extra-sounds-${lang}-${fmt}-digium),)
 	\$(INSTALL_DIR) \$(PKG_BUILD_DIR)/extra-${lang}
 	\$(HOST_TAR) -C \$(PKG_BUILD_DIR)/extra-${lang} -xzf \$(DL_DIR)/asterisk-extra-sounds-${lang}-${fmt}-current.tar.gz
 endif
@@ -60,7 +60,7 @@ echo "${fmt}"
 if [ ! -f tmp/asterisk-moh-opsound-${fmt}-current.tar.gz ];then wget -P tmp https://downloads.asterisk.org/pub/telephony/sounds/asterisk-moh-opsound-${fmt}-current.tar.gz;fi
 suma=$(sha256sum tmp/asterisk-moh-opsound-${fmt}-current.tar.gz | cut -d" " -f1)
 cat <<EOF >> make_download
-ifneq (\$(CONFIG_PACKAGE_asterisk-moh-opsound-${fmt}-digium),)
+ifneq (\$(CONFIG_PACKAGE_asterisk-moh-opsounds-${fmt}-digium),)
 \$(eval \$(call Download,asterisk-moh,${fmt},${suma}))
 endif
 EOF
@@ -68,7 +68,7 @@ cat <<EOF >> make_build
 \$(eval \$(call BuildasteriskMohSound,${fmt},moh sound Files. ${fmt} format))
 EOF
 cat <<EOF >> make_prepare
-ifneq (\$(CONFIG_PACKAGE_asterisk-moh-opsound-${fmt}-digium),)
+ifneq (\$(CONFIG_PACKAGE_asterisk-moh-opsounds-${fmt}-digium),)
 	\$(INSTALL_DIR) \$(PKG_BUILD_DIR)/moh
 	\$(HOST_TAR) -C \$(PKG_BUILD_DIR)/moh -xzf \$(DL_DIR)/asterisk-moh-opsound-${fmt}-current.tar.gz
 endif
