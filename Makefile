@@ -11,6 +11,7 @@ PKG_NAME:=asterisk-sounds-digium
 PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 PKG_BUILD_PARALLEL:=0
+PKGARCH:=all
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/asterisk-sounds-digium-$(PKG_VERSION)
 
@@ -952,7 +953,7 @@ define Package/asterisk/install/sounds
 	$(CP) $(PKG_BUILD_DIR)/core-$(3)/phonetic/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/phonetic
 	$(CP) $(PKG_BUILD_DIR)/core-$(3)/silence/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/silence
 	$(CP) $(PKG_BUILD_DIR)/core-$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)
-	rm -f $(1)/usr/share/asterisk/sounds/vm-*
+	rm -f $(1)/usr/share/asterisk/sounds/$(3)/vm-*
 endef
 
 define Package/asterisk/install/voicemail

@@ -21,7 +21,7 @@ define Package/asterisk/install/sounds
 	$(CP) $(PKG_BUILD_DIR)/core-$(3)/phonetic/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/phonetic
 	$(CP) $(PKG_BUILD_DIR)/core-$(3)/silence/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/silence
 	$(CP) $(PKG_BUILD_DIR)/core-$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)
-	rm -f $(1)/usr/share/asterisk/sounds/vm-*
+	rm -f $(1)/usr/share/asterisk/sounds/$(3)/vm-*
 endef
 
 define Package/asterisk/install/voicemail
