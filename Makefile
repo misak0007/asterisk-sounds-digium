@@ -26,7 +26,6 @@ define Package/asterisk-sounds-digium/Default
   SUBMENU:=Telephony
   SECTION:=net
   CATEGORY:=Network
-  Conflicts:=asterisk-sound
 endef
 
 define Download/asterisk-sound
