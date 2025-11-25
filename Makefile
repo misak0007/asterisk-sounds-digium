@@ -11,7 +11,6 @@ PKG_NAME:=asterisk-sounds-digium
 PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 PKG_BUILD_PARALLEL:=0
-PKGARCH:=all
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/asterisk-sounds-digium-$(PKG_VERSION)
 
@@ -23,6 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/download.mk
 
 define Package/asterisk-sounds-digium/Default
+  PKGARCH:=all
   SUBMENU:=Telephony
   SECTION:=net
   CATEGORY:=Network
@@ -968,11 +968,13 @@ define Package/asterisk/install/extra
 	$(CP) $(PKG_BUILD_DIR)/extra-$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)
 	$(CP) $(PKG_BUILD_DIR)/extra-$(3)/wx/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/wx
 	$(CP) $(PKG_BUILD_DIR)/extra-$(3)/ha/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/ha
+	rm -f $(1)/usr/share/asterisk/sounds/$(3)/astcc-followed-by-the-pound-key.*
 endef
 
 define Package/asterisk/install/extralite
 	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)
 	$(CP) $(PKG_BUILD_DIR)/extra-$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)
+	rm -f $(1)/usr/share/asterisk/sounds/$(3)/astcc-followed-by-the-pound-key.*
 endef
 
 define Package/asterisk/install/moh
@@ -985,6 +987,7 @@ define BuildasteriskCoreSound
   $$(call Package/asterisk-sounds-digium/Default)
     TITLE:=Sound support
     DEPENDS:=asterisk
+    PROVIDES:=asterisk-core-sounds-$(1)
   endef
 
   define Package/asterisk-core-sounds-$(1)-digium/description
@@ -1003,6 +1006,7 @@ define BuildasteriskVoicemail
   $$(call Package/asterisk-sounds-digium/Default)
     TITLE:=Sound support
     DEPENDS:=asterisk
+    PROVIDES:=asterisk-core-sounds-$(1)
   endef
 
   define Package/asterisk-core-sounds-$(1)-digium/description
@@ -1021,6 +1025,7 @@ define BuildasteriskExtraSound
   $$(call Package/asterisk-sounds-digium/Default)
     TITLE:=Sound support
     DEPENDS:=asterisk
+    PROVIDES:=asterisk-extra-sounds-$(1)
   endef
 
   define Package/asterisk-extra-sounds-$(1)-digium/description
@@ -1039,6 +1044,7 @@ define BuildasteriskExtraLiteSound
   $$(call Package/asterisk-sounds-digium/Default)
     TITLE:=Sound support
     DEPENDS:=asterisk
+    PROVIDES:=asterisk-extra-sounds-$(1)
   endef
 
   define Package/asterisk-extra-sounds-$(1)-digium/description
