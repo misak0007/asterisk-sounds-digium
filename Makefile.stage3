@@ -7,40 +7,40 @@ define Build/Compile
 endef
 
 define Package/asterisk/install/sounds
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/dictate
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/digits
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/followme
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/letters
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/phonetic
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/silence
-	$(CP) $(PKG_BUILD_DIR)/$(3)/dictate/*.$(2) $(1)/usr/share/asterisk/sounds/dictate
-	$(CP) $(PKG_BUILD_DIR)/$(3)/digits/*.$(2) $(1)/usr/share/asterisk/sounds/digits
-	$(CP) $(PKG_BUILD_DIR)/$(3)/followme/*.$(2) $(1)/usr/share/asterisk/sounds/followme
-	$(CP) $(PKG_BUILD_DIR)/$(3)/letters/*.$(2) $(1)/usr/share/asterisk/sounds/letters
-	$(CP) $(PKG_BUILD_DIR)/$(3)/phonetic/*.$(2) $(1)/usr/share/asterisk/sounds/phonetic
-	$(CP) $(PKG_BUILD_DIR)/$(3)/silence/*.$(2) $(1)/usr/share/asterisk/sounds/silence
-	$(CP) $(PKG_BUILD_DIR)/$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)/dictate
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)/digits
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)/followme
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)/letters
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)/phonetic
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)/silence
+	$(CP) $(PKG_BUILD_DIR)/core-$(3)/dictate/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/dictate
+	$(CP) $(PKG_BUILD_DIR)/core-$(3)/digits/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/digits
+	$(CP) $(PKG_BUILD_DIR)/core-$(3)/followme/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/followme
+	$(CP) $(PKG_BUILD_DIR)/core-$(3)/letters/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/letters
+	$(CP) $(PKG_BUILD_DIR)/core-$(3)/phonetic/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/phonetic
+	$(CP) $(PKG_BUILD_DIR)/core-$(3)/silence/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/silence
+	$(CP) $(PKG_BUILD_DIR)/core-$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)
 	rm -f $(1)/usr/share/asterisk/sounds/vm-*
 endef
 
 define Package/asterisk/install/voicemail
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/
-	$(CP) $(PKG_BUILD_DIR)/$(3)/vm-*.$(2) $(1)/usr/share/asterisk/sounds/
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)
+	$(CP) $(PKG_BUILD_DIR)/core-$(3)/vm-*.$(2) $(1)/usr/share/asterisk/sounds/$(3)
 endef
 
 define Package/asterisk/install/extra
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/ha
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/wx
-	$(CP) $(PKG_BUILD_DIR)/$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/
-	$(CP) $(PKG_BUILD_DIR)/$(3)/wx/*.$(2) $(1)/usr/share/asterisk/sounds/wx
-	$(CP) $(PKG_BUILD_DIR)/$(3)/ha/*.$(2) $(1)/usr/share/asterisk/sounds/ha
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)/ha
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)/wx
+	$(CP) $(PKG_BUILD_DIR)/extra-$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)
+	$(CP) $(PKG_BUILD_DIR)/extra-$(3)/wx/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/wx
+	$(CP) $(PKG_BUILD_DIR)/extra-$(3)/ha/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)/ha
 endef
 
 define Package/asterisk/install/extralite
-	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/
-	$(CP) $(PKG_BUILD_DIR)/$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/
+	$(INSTALL_DIR) $(1)/usr/share/asterisk/sounds/$(3)
+	$(CP) $(PKG_BUILD_DIR)/extra-$(3)/*.$(2) $(1)/usr/share/asterisk/sounds/$(3)
 endef
 
 define Package/asterisk/install/moh

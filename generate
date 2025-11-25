@@ -15,8 +15,8 @@ ifneq (\$(CONFIG_PACKAGE_asterisk-core-sounds-${lang}-${fmt}-digium)\$(CONFIG_PA
 endif
 EOF
 cat <<EOF >> make_build
-\$(eval \$(call BuildasteriskCoreSound,${lang}-${fmt},${lang} core sound Files. ${fmt} format,${fmt},core-${lang}))
-\$(eval \$(call BuildasteriskVoicemail,voicemail-${lang}-${fmt},${lang} core voice mail Files. ${fmt} format,${fmt},core-${lang}))
+\$(eval \$(call BuildasteriskCoreSound,${lang}-${fmt},${lang} core sound Files. ${fmt} format,${fmt},${lang}))
+\$(eval \$(call BuildasteriskVoicemail,voicemail-${lang}-${fmt},${lang} core voice mail Files. ${fmt} format,${fmt},${lang}))
 EOF
 cat <<EOF >> make_prepare
 ifneq (\$(CONFIG_PACKAGE_asterisk-core-sounds-${lang}-${fmt}-digium)\$(CONFIG_PACKAGE_asterisk-core-sounds-voicemail-${lang}-${fmt}-digium),)
@@ -39,11 +39,11 @@ endif
 EOF
 if [ "${lang}" == "en_GB" ];then
 cat <<EOF >> make_build
-\$(eval \$(call BuildasteriskExtraLiteSound,${lang}-${fmt},${lang} extra sound Files. ${fmt} format,${fmt},extra-${lang}))
+\$(eval \$(call BuildasteriskExtraLiteSound,${lang}-${fmt},${lang} extra sound Files. ${fmt} format,${fmt},${lang}))
 EOF
 else
 cat <<EOF >> make_build
-\$(eval \$(call BuildasteriskExtraSound,${lang}-${fmt},${lang} extra sound Files. ${fmt} format,${fmt},extra-${lang}))
+\$(eval \$(call BuildasteriskExtraSound,${lang}-${fmt},${lang} extra sound Files. ${fmt} format,${fmt},${lang}))
 EOF
 fi
 cat <<EOF >> make_prepare
